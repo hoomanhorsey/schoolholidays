@@ -45,7 +45,8 @@ function displayBooks(library) {
 
         const pBook = document.createElement('p')
         
-        pBook.textContent = book.title;
+        pBook.innerHTML= `${book.title} by ${book.author} <button class="book-btn">Remove</button> <button class="book-btn">Read</button>`;
+        pBook.setAttribute('class', 'p-book');
         
         // const node = document.createTextNode(book.title)
         // pBook.appendChild(node);
