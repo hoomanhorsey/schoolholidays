@@ -8,7 +8,6 @@ const myLibrary = [];
 
 
 const a = new Book("Getting to Yes", "Fary Fart", 234, "Not read yet");
-
 const b = new Book("Getting to No", "Smooth Operator", 23, "Not read yet");
 const c = new Book("I couldn't have done it without myself", "Mr Poo", 243, "Not read yet");
 const d = new Book("Friends. Who needs them?", "Mick Hucknell", 343, "Not read yet");
@@ -53,7 +52,6 @@ function displayBooks(library) {
 
 
 
-displayBooks(myLibrary);
 
 
 let newBookBtn = document.querySelector('.newBookBtn')
@@ -72,15 +70,18 @@ newBookBtn.addEventListener('click', (e) => {
 
     let x = new Book(title, author, pages, statusValue);
     addBookToLibrary(x);
+    console.log('x', x)
 
+    console.log('mylibrary', myLibrary)
 
     
-console.log(e)
+    console.log(e)
     // console.log(newBookSub.title, newBookSub.author, newBookSub.pages, newBookSub.value) 
 
     // console.log(e.author, e.value)
     // });
 
+    displayBooks(myLibrary);
 
     
 
@@ -101,6 +102,8 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
+
+displayBooks(myLibrary);
 
 
 });
