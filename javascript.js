@@ -6,20 +6,6 @@ const myLibrary = [];
 
 
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function () {
-        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.read;
-    } 
-
-}
-
-function addBookToLibrary(book) {
-    myLibrary.push(book)
-}
 
 const a = new Book("Getting to Yes", "Fary Fart", 234, "Not read yet");
 
@@ -45,7 +31,11 @@ function displayBooks(library) {
 
         const pBook = document.createElement('p')
         
-        pBook.innerHTML= `${book.title} by ${book.author} <button class="book-btn">Remove</button> <button class="book-btn">Read</button>`;
+        pBook.innerHTML= `${book.title} by ${book.author} 
+            <div> <button class="book-btn"> Read, make responsive</button> </div>
+            <div> <button class="book-btn">Remove</button> </div>
+            `;
+            
         pBook.setAttribute('class', 'p-book');
         
         // const node = document.createTextNode(book.title)
@@ -61,6 +51,56 @@ function displayBooks(library) {
 }
 
 
+
+
 displayBooks(myLibrary);
+
+
+let newBookBtn = document.querySelector('.newBookBtn')
+
+newBookBtn.addEventListener('click', (e) => {
+
+    e.preventDefault('no');
+
+    let statusValue = document.querySelector('.read').value;
+    
+    let author = document.querySelector('.author').value;
+    let title = document.querySelector('.title').value;
+    let pages = document.querySelector('.pages').value;
+
+    console.log(author, title, pages, statusValue);
+
+    let x = new Book(title, author, pages, statusValue);
+    addBookToLibrary(x);
+
+
+    
+console.log(e)
+    // console.log(newBookSub.title, newBookSub.author, newBookSub.pages, newBookSub.value) 
+
+    // console.log(e.author, e.value)
+    // });
+
+
+    
+
+});
+
+
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.info = function () {
+        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.read;
+    } 
+
+}
+
+function addBookToLibrary(book) {
+    myLibrary.push(book)
+}
+
 
 });
