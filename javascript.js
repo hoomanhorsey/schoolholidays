@@ -1,11 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-
-
 const myLibrary = [];
-
-
-
 
 const a = new Book("Getting to Yes", "Fary Fart", 234, "Not read yet");
 const b = new Book("Getting to No", "Smooth Operator", 23, "Not read yet");
@@ -17,6 +12,7 @@ addBookToLibrary(b);
 addBookToLibrary(c);
 addBookToLibrary(d);
 
+displayBooks(myLibrary);
 
 
 
@@ -24,30 +20,7 @@ addBookToLibrary(d);
 
 // let booksDiv = document.querySelector('.books-div');
 
-function displayBooks(library) {
-    for (book of library) {
 
-
-        const pBook = document.createElement('p')
-        
-        pBook.innerHTML= `${book.title} by ${book.author} 
-            <div> <button class="book-btn"> Read, make responsive</button> </div>
-            <div> <button class="book-btn">Remove</button> </div>
-            `;
-            
-        pBook.setAttribute('class', 'p-book');
-        
-        // const node = document.createTextNode(book.title)
-        // pBook.appendChild(node);
-        document.querySelector('.books-div').appendChild(pBook);
-        // pBook.textContent = book.title;
-        
-
-        // bookDiv = document.querySelector('books-div')
-        // bookDiv.textContent = book.title;
-    }
-
-}
 
 
 
@@ -58,23 +31,20 @@ let newBookBtn = document.querySelector('.newBookBtn')
 
 newBookBtn.addEventListener('click', (e) => {
 
-    e.preventDefault('no');
+    e.preventDefault();
 
     let statusValue = document.querySelector('.read').value;
-    
     let author = document.querySelector('.author').value;
     let title = document.querySelector('.title').value;
     let pages = document.querySelector('.pages').value;
-
+    console.log(author.name)
     console.log(author, title, pages, statusValue);
 
-    let x = new Book(title, author, pages, statusValue);
-    addBookToLibrary(x);
-    console.log('x', x)
-
+    let newBook = new Book(title, author, pages, statusValue);
+    addBookToLibrary(newBook);
+    
     console.log('mylibrary', myLibrary)
 
-    
     console.log(e)
     // console.log(newBookSub.title, newBookSub.author, newBookSub.pages, newBookSub.value) 
 
@@ -99,11 +69,43 @@ function Book(title, author, pages, read) {
 
 }
 
+
+
+
+
+
+// Functions
+
+
+
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
 
-displayBooks(myLibrary);
+
+function displayBooks(library) {
+
+    let booksDiv = document.querySelector('.books-div');
+
+    booksDiv.textContent = ""; // Clear out Div
+
+    for (book of library) {
+        const pBook = document.createElement('p')       
+        pBook.innerHTML= `${book.title} by ${book.author} 
+            <div> <button class="book-btn"> Read, make responsive</button> </div>
+            <div> <button class="book-btn">Remove</button> </div>
+            `;
+        pBook.setAttribute('class', 'p-book');
+        booksDiv.appendChild(pBook);
+
+    }
+}
 
 
-});
+
+}); // End of DOM Content Loaded Function
+
+
+
+
+
