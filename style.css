@@ -41,11 +41,17 @@
     display: grid;
     grid-column: 1/2;
     grid-row: 2/4;
+
+    grid-template-rows: 1fr 2fr;
 }
 
-
+.addBook {
+    margin: 30px;
+    padding: 15px;
+}
 .new-book-form {
     display: block;
+    padding: 30px;
 }
 
 .label-author, .label-title, .label-pages, .label-read {
@@ -75,5 +81,7 @@
     border: 1px solid lightblue;
     border-radius: 5px;
     padding: 10px;
+    margin: 10px;
+
     
 }

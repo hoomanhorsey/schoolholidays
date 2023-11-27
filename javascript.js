@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+// Initialization of library
 const myLibrary = [];
 
 const a = new Book("Getting to Yes", "Fary Fart", 234, "Not read yet");
@@ -12,50 +13,51 @@ addBookToLibrary(b);
 addBookToLibrary(c);
 addBookToLibrary(d);
 
+// Initial library display
 displayBooks(myLibrary);
 
 
-
-
-
-// let booksDiv = document.querySelector('.books-div');
-
-
-
-
-
-
-
-
+// New Book form submission, using querySelector rather than form submission
 let newBookBtn = document.querySelector('.newBookBtn')
 
 newBookBtn.addEventListener('click', (e) => {
 
-    e.preventDefault();
+    e.preventDefault(); // Prevent default action on submission
 
+    // Gather details from form
     let statusValue = document.querySelector('.read').value;
     let author = document.querySelector('.author').value;
     let title = document.querySelector('.title').value;
     let pages = document.querySelector('.pages').value;
-    console.log(author.name)
-    console.log(author, title, pages, statusValue);
 
+    // Create new book object and add to library array
     let newBook = new Book(title, author, pages, statusValue);
     addBookToLibrary(newBook);
-    
-    console.log('mylibrary', myLibrary)
 
-    console.log(e)
-    // console.log(newBookSub.title, newBookSub.author, newBookSub.pages, newBookSub.value) 
-
-    // console.log(e.author, e.value)
-    // });
-
+    // Update book display
     displayBooks(myLibrary);
-
-    
-
+    document.querySelector('form').reset();
 });
+
+removeBtn = document.querySelectorAll('.remove-btn');
+removeBtn.forEach( (e) => {
+    e.addEventListener('click', ()=> {
+    console.log('GEDRIDOFIT!');
+    console.log(e);
+    });
+}  )
+
+
+
+
+
+
+// Functions
+
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+
+}
 
 
 function Book(title, author, pages, read) {
@@ -65,41 +67,30 @@ function Book(title, author, pages, read) {
     this.read = read;
     this.info = function () {
         return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.read;
-    } 
-
-}
-
-
-
-
-
-
-// Functions
-
-
+    }};
 
 function addBookToLibrary(book) {
     myLibrary.push(book)
-}
-
+    console.log(myLibrary)
+    };
 
 function displayBooks(library) {
 
     let booksDiv = document.querySelector('.books-div');
-
     booksDiv.textContent = ""; // Clear out Div
 
     for (book of library) {
-        const pBook = document.createElement('p')       
+        const pBook = document.createElement('p')
+        
+        pBook.setAttribute('data-index', library.indexOf(book));  
+        
+        
         pBook.innerHTML= `${book.title} by ${book.author} 
             <div> <button class="book-btn"> Read, make responsive</button> </div>
-            <div> <button class="book-btn">Remove</button> </div>
-            `;
+            <div> <button class="remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
-
-    }
-}
+    }};
 
 
 
