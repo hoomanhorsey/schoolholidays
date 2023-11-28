@@ -44,6 +44,10 @@ removeBtn.forEach( (e) => {
     e.addEventListener('click', ()=> {
     console.log('GEDRIDOFIT!');
     console.log(e);
+    // index = e.dataset.index;
+    // console.log('index', index);
+    // deleteBook(index);
+    
     });
 }  )
 
@@ -55,7 +59,12 @@ removeBtn.forEach( (e) => {
 // Functions
 
 function deleteBook(index) {
-    myLibrary.splice(index, 1);
+    delete myLibrary[index];
+
+    // myLibrary.splice(index, 1);
+    console.log(myLibrary)
+
+    displayBooks(myLibrary);
 
 }
 
@@ -71,7 +80,6 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book)
-    console.log(myLibrary)
     };
 
 function displayBooks(library) {
@@ -80,16 +88,21 @@ function displayBooks(library) {
     booksDiv.textContent = ""; // Clear out Div
 
     for (book of library) {
-        const pBook = document.createElement('p')
+        if (book != undefined) {
+        const pBook = document.createElement('p');
+
+        index = library.indexOf(book);
+        pBook.setAttribute('data-index', index);
         
-        pBook.setAttribute('data-index', library.indexOf(book));  
+        // pBook.setAttribute('data-index', library.indexOf(book));  
         
         
         pBook.innerHTML= `${book.title} by ${book.author} 
             <div> <button class="book-btn"> Read, make responsive</button> </div>
-            <div> <button class="remove-btn">Remove</button> </div> `;
+            <div> <button data-index="${index}" class="remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
+        } else {'book is undefined'}; //superflous, as book will never be clicked to be deleted if it is undefined.
     }};
 
 
