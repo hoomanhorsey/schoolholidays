@@ -74,7 +74,7 @@
 }
 
 
-.book-btn {
+.newBookBtn, .book-status-btn, .book-remove-btn {
     color: white;
     font-weight: 700;
     background-color: dodgerblue;

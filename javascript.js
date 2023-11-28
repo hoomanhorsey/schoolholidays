@@ -39,17 +39,21 @@ newBookBtn.addEventListener('click', (e) => {
     document.querySelector('form').reset();
 });
 
-removeBtn = document.querySelectorAll('.remove-btn');
-removeBtn.forEach( (e) => {
+let removeBtns = document.querySelectorAll('.book-remove-btn');
+
+console.log(removeBtns);
+removeBtns.forEach((e) => {
     e.addEventListener('click', ()=> {
-    console.log('GEDRIDOFIT!');
-    console.log(e);
-    // index = e.dataset.index;
-    // console.log('index', index);
-    // deleteBook(index);
-    
+    console.log('index', e.dataset.index);
+    console.log(myLibrary)
+    index = e.dataset.index;
+    console.log('index', index);
+    deleteBook(index);
+    console.log(removeBtns);
+    removeBtns = document.querySelectorAll('.book-remove-btn')
+    console.log(removeBtns);
+     });
     });
-}  )
 
 
 
@@ -79,7 +83,8 @@ function Book(title, author, pages, read) {
     }};
 
 function addBookToLibrary(book) {
-    myLibrary.push(book)
+    myLibrary.push(book);
+    console.log(myLibrary);
     };
 
 function displayBooks(library) {
@@ -98,8 +103,8 @@ function displayBooks(library) {
         
         
         pBook.innerHTML= `${book.title} by ${book.author} 
-            <div> <button class="book-btn"> Read, make responsive</button> </div>
-            <div> <button data-index="${index}" class="remove-btn">Remove</button> </div> `;
+            <div> <button class="book-status-btn"> Read, make responsive</button> </div>
+            <div> <button data-index="${index}" class="book-remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
         } else {'book is undefined'}; //superflous, as book will never be clicked to be deleted if it is undefined.
