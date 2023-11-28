@@ -16,7 +16,17 @@ addBookToLibrary(d);
 // Initial library display
 displayBooks(myLibrary);
 
+loadEventListeners();
 
+
+function loadEventListeners() {
+    addNewBookListener();
+    addRemoveBtnListener()
+    addStatusBtnListener();
+
+    }
+
+function addNewBookListener() {
 // New Book form submission, using querySelector rather than form submission
 let newBookBtn = document.querySelector('.newBookBtn')
 
@@ -39,10 +49,13 @@ newBookBtn.addEventListener('click', (e) => {
     document.querySelector('form').reset();
     });
 
+}
+
+    
+function addRemoveBtnListener() {
 let removeBtns = document.querySelectorAll('.book-remove-btn');
 
 removeBtns.forEach((e) => {
-    console.log(removeBtns);
 
     e.addEventListener('click', ()=> {
         console.log('index', e.dataset.index);
@@ -53,24 +66,24 @@ removeBtns.forEach((e) => {
         // console.log(removeBtns);
         // removeBtns = document.querySelectorAll('.book-remove-btn')
         // console.log(removeBtns);
-        addStatusBtnListener();
+       
         })
     });
 
+}
 
-addStatusBtnListener();
+
 
 function addStatusBtnListener() {
-
 
 let statusBtns = document.querySelectorAll('.book-status-btn');
 console.log(statusBtns);
 statusBtns.forEach((e) => {
     e.addEventListener('click', () => {
         console.log('status');
-
     })
 })
+
 };
 
 
@@ -83,6 +96,7 @@ function deleteBook(index) {
     // console.log(myLibrary)
 
     displayBooks(myLibrary);
+
 
 }
 
@@ -123,6 +137,7 @@ function displayBooks(library) {
         } else {'book is undefined'}; //superflous, as book will never be clicked to be deleted if it is undefined.
     }
     console.log(myLibrary);
+
 
     };
 
