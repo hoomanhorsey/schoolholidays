@@ -37,36 +37,50 @@ newBookBtn.addEventListener('click', (e) => {
     // Update book display
     displayBooks(myLibrary);
     document.querySelector('form').reset();
-});
+    });
 
 let removeBtns = document.querySelectorAll('.book-remove-btn');
 
-console.log(removeBtns);
 removeBtns.forEach((e) => {
+    console.log(removeBtns);
+
     e.addEventListener('click', ()=> {
-    console.log('index', e.dataset.index);
-    console.log(myLibrary)
-    index = e.dataset.index;
-    console.log('index', index);
-    deleteBook(index);
-    console.log(removeBtns);
-    removeBtns = document.querySelectorAll('.book-remove-btn')
-    console.log(removeBtns);
-     });
+        console.log('index', e.dataset.index);
+        // console.log(myLibrary)
+        index = e.dataset.index;
+        console.log('index', index);
+        deleteBook(index);
+        // console.log(removeBtns);
+        // removeBtns = document.querySelectorAll('.book-remove-btn')
+        // console.log(removeBtns);
+        addStatusBtnListener();
+        })
     });
 
 
+addStatusBtnListener();
 
+function addStatusBtnListener() {
+
+
+let statusBtns = document.querySelectorAll('.book-status-btn');
+console.log(statusBtns);
+statusBtns.forEach((e) => {
+    e.addEventListener('click', () => {
+        console.log('status');
+
+    })
+})
+};
 
 
 
 // Functions
 
 function deleteBook(index) {
-    delete myLibrary[index];
-
-    // myLibrary.splice(index, 1);
-    console.log(myLibrary)
+    // delete myLibrary[index];
+    myLibrary.splice(index, 1);
+    // console.log(myLibrary)
 
     displayBooks(myLibrary);
 
@@ -84,7 +98,6 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-    console.log(myLibrary);
     };
 
 function displayBooks(library) {
@@ -108,7 +121,10 @@ function displayBooks(library) {
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
         } else {'book is undefined'}; //superflous, as book will never be clicked to be deleted if it is undefined.
-    }};
+    }
+    console.log(myLibrary);
+
+    };
 
 
 
