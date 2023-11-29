@@ -1,11 +1,17 @@
 * {
+    box-sizing: border-box;
     /* border: .5px solid grey; */
 }
 
-.body {
+
+
+html, body {
+        /* margin: 0px;
+    padding: 0px; */
     display: grid;
-    width: 1400px;
-    height: 2400px;
+
+    width: 100%;
+    height: 100%;
 
 }
 
@@ -13,7 +19,9 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 2fr 1fr 1fr;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    height: 100%;
 }
 .header {
     display: grid;
@@ -21,10 +29,8 @@
 
     grid-column: 1 / 3;
     place-items: center;
-
     padding: 30px;
 
- 
     background-image: url("bookshelfsmall.jpg");
     
 }
@@ -40,7 +46,7 @@
     padding: 15px 150px;
     margin: 0px 350px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-   
+  
 
 }
 

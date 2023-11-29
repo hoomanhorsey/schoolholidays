@@ -8,12 +8,14 @@ const b = new Book("Where's my chickky chick", "Whiskey Dama", 23, "unread");
 const c = new Book("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
 const d = new Book("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
 const e = new Book("Meooowl and other Poems", "Whiskey Dama", 67, "read");
+const f = new Book("Did you ever figure out how to fix the height % of this page?", "Andrew Ma", 2, "unread")
 
 addBookToLibrary(a);
 addBookToLibrary(b);
 addBookToLibrary(c);
 addBookToLibrary(d);
 addBookToLibrary(e);
+addBookToLibrary(f);
 
 
 // Initial library display
