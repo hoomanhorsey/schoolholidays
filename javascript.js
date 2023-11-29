@@ -7,11 +7,14 @@ const a = new Book("Getting to Floof", "Whiskey Dama", 534, "unread");
 const b = new Book("Where's my chickky chick", "Whiskey Dama", 23, "unread");
 const c = new Book("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
 const d = new Book("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
+const e = new Book("Meooowl and other Poems", "Whiskey Dama", 67, "read");
 
 addBookToLibrary(a);
 addBookToLibrary(b);
 addBookToLibrary(c);
 addBookToLibrary(d);
+addBookToLibrary(e);
+
 
 // Initial library display
 displayBooks(myLibrary);
@@ -67,10 +70,10 @@ function addStatusBtnListener() {
             console.log('Parent Index:', parentIndex);
             console.log('Did it get to here?')
 
-            if (myLibrary[parentIndex].status == true) {
-                myLibrary[parentIndex].status = false;
+            if (myLibrary[parentIndex].status == "read") {
+                myLibrary[parentIndex].status = "unread";
             } else {
-                myLibrary[parentIndex].status = true;
+                myLibrary[parentIndex].status = "read";
             };
 
             console.log(myLibrary[parentIndex].status);

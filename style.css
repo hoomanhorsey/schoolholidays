@@ -4,10 +4,8 @@
 
 .body {
     display: grid;
-
-
     width: 1400px;
-    height: 2000px;
+    height: 2400px;
 
 }
 
@@ -16,7 +14,6 @@
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 2fr 1fr 1fr;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-
 }
 .header {
     display: grid;
@@ -43,8 +40,7 @@
     padding: 15px 150px;
     margin: 0px 350px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-    
+   
 
 }
 
