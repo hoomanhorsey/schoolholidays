@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // Initialization of library
 const myLibrary = [];
 
-const a = new Book("Getting to Yes", "Fary Fart", 234, "Not read yet");
-const b = new Book("Getting to No", "Smooth Operator", 23, "Not read yet");
-const c = new Book("I couldn't have done it without myself", "Mr Poo", 243, "Not read yet");
-const d = new Book("Friends. Who needs them?", "Mick Hucknell", 343, "Not read yet");
+const a = new Book("Getting to Floof", "Whiskey Dama", 534, "unread");
+const b = new Book("Where's my chickky chick", "Whiskey Dama", 23, "unread");
+const c = new Book("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
+const d = new Book("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
 
 addBookToLibrary(a);
 addBookToLibrary(b);
@@ -16,19 +16,16 @@ addBookToLibrary(d);
 // Initial library display
 displayBooks(myLibrary);
 
-loadEventListeners();
+// Add event listeners for buttons
+addRemoveBtnListener();
+addStatusBtnListener();
+    
 
 
-function loadEventListeners() {
-    addNewBookListener();
-    addRemoveBtnListener()
-    addStatusBtnListener();
 
-    }
+// Event listeners
 
-function addNewBookListener() {
-// New Book form submission, using querySelector rather than form submission
-let newBookBtn = document.querySelector('.newBookBtn')
+let newBookBtn = document.querySelector('.newBookBtn') // New Book form submission, using querySelector rather than form submission
 
 newBookBtn.addEventListener('click', (e) => {
 
@@ -47,67 +44,76 @@ newBookBtn.addEventListener('click', (e) => {
     // Update book display
     displayBooks(myLibrary);
     document.querySelector('form').reset();
+    addRemoveBtnListener();
+    addStatusBtnListener();
     });
 
-}
 
+function addStatusBtnListener() {
+    let statusBtns = document.querySelectorAll('.book-status-btn');
+    console.log(statusBtns);
+    statusBtns.forEach((e) => {
+        e.addEventListener('click', () => {
+            console.log('status');
+            console.log('status');
+            // console.log(e.currentTarget.parentNode.dataset.index)
+
+            let parentNode = e.closest('.p-book');
+             
+            // Access the data element of the parent node
+            let parentIndex = parentNode.dataset.index;
+
+            // Do something with the parent data
+            console.log('Parent Index:', parentIndex);
+            console.log('Did it get to here?')
+
+            if (myLibrary[parentIndex].status == true) {
+                myLibrary[parentIndex].status = false;
+            } else {
+                myLibrary[parentIndex].status = true;
+            };
+
+            console.log(myLibrary[parentIndex].status);
+            displayBooks(myLibrary);
+            addRemoveBtnListener();
+            addStatusBtnListener();
+
+            })
+        })
+    };
     
 function addRemoveBtnListener() {
 let removeBtns = document.querySelectorAll('.book-remove-btn');
 
 removeBtns.forEach((e) => {
-
     e.addEventListener('click', ()=> {
         console.log('index', e.dataset.index);
-        // console.log(myLibrary)
         index = e.dataset.index;
         console.log('index', index);
         deleteBook(index);
-        // console.log(removeBtns);
-        // removeBtns = document.querySelectorAll('.book-remove-btn')
-        // console.log(removeBtns);
-       
+
+            })
         })
-    });
-
-}
-
-
-
-function addStatusBtnListener() {
-
-let statusBtns = document.querySelectorAll('.book-status-btn');
-console.log(statusBtns);
-statusBtns.forEach((e) => {
-    e.addEventListener('click', () => {
-        console.log('status');
-    })
-})
-
-};
+    };
 
 
 
 // Functions
 
 function deleteBook(index) {
-    // delete myLibrary[index];
     myLibrary.splice(index, 1);
-    // console.log(myLibrary)
-
     displayBooks(myLibrary);
-
-
+    addRemoveBtnListener();
+    addStatusBtnListener();
 }
 
-
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.status = status;
     this.info = function () {
-        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.read;
+        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
     }};
 
 function addBookToLibrary(book) {
@@ -120,25 +126,18 @@ function displayBooks(library) {
     booksDiv.textContent = ""; // Clear out Div
 
     for (book of library) {
-        if (book != undefined) {
+        
         const pBook = document.createElement('p');
 
         index = library.indexOf(book);
-        pBook.setAttribute('data-index', index);
-        
-        // pBook.setAttribute('data-index', library.indexOf(book));  
-        
-        
-        pBook.innerHTML= `${book.title} by ${book.author} 
-            <div> <button class="book-status-btn"> Read, make responsive</button> </div>
+        pBook.setAttribute('data-index', index);     
+                
+        pBook.innerHTML= `<div> <span class="title" >${book.title} </span> by ${book.author}, ${book.pages} pages.  <br><br> Status "${book.status}".</div> 
+            <div> <button class="book-status-btn"> Change read status</button> </div>
             <div> <button data-index="${index}" class="book-remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
-        } else {'book is undefined'}; //superflous, as book will never be clicked to be deleted if it is undefined.
-    }
-    console.log(myLibrary);
-
-
+        }
     };
 
 
