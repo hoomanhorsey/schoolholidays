@@ -1,7 +1,3 @@
-// 1. Book changeStatus function. Move it to the prototype
-// 2. Then change the function that displays the book to read from the object instead of the Array.
-
-
 document.addEventListener("DOMContentLoaded", function() {
 
 // Initialization of library
@@ -21,9 +17,6 @@ addBookToLibrary(d);
 addBookToLibrary(e);
 addBookToLibrary(f);
 
-console.log('prototype of a', Object.getPrototypeOf(a))
-console.log(Object.getPrototypeOf(a) === Book.prototype)
-console.log(Book.prototype);
 
 // Initial library display
 displayBooks(myLibrary);
@@ -33,12 +26,11 @@ addRemoveBtnListener();
 addStatusBtnListener();
     
 
-
-
 // Event listeners
 
 let newBookBtn = document.querySelector('.newBookBtn') // New Book form submission, using querySelector rather than form submission
 
+// add new book via form
 newBookBtn.addEventListener('click', (e) => {
 
     e.preventDefault(); // Prevent default action on submission
@@ -53,7 +45,6 @@ newBookBtn.addEventListener('click', (e) => {
         alert("Please complete all details in the form to add a new book.")
     }
 
-
     // Create new book object and add to library array
     let newBook = new Book(title, author, pages, statusValue);
     addBookToLibrary(newBook);
@@ -65,7 +56,7 @@ newBookBtn.addEventListener('click', (e) => {
     addStatusBtnListener();
     });
 
-
+// change read status
 function addStatusBtnListener() {
     let statusBtns = document.querySelectorAll('.book-status-btn');
     statusBtns.forEach((e) => {
@@ -87,17 +78,15 @@ function addStatusBtnListener() {
         })
     };
     
+// remove book
 function addRemoveBtnListener() {
-let removeBtns = document.querySelectorAll('.book-remove-btn');
-
-removeBtns.forEach((e) => {
-    e.addEventListener('click', ()=> {
-        index = e.dataset.index;
-        deleteBook(index);
+    let removeBtns = document.querySelectorAll('.book-remove-btn');
+    removeBtns.forEach((e) => {
+        e.addEventListener('click', ()=> {
+        deleteBook(e.dataset.index);
+                })
             })
-        })
-    };
-
+        };
 
 // Functions
 
@@ -115,8 +104,7 @@ function Book(title, author, pages, status) {
     this.status = status;
     this.info = function () {
         return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
-    }
-    
+        }
     };
 
 // Adds changeStatus method to Book object prototype!!!!!
@@ -126,7 +114,7 @@ Book.prototype.changeStatus = function () {
         } else {
             this.status = "read";
         }
-    }
+    };
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -151,9 +139,7 @@ function displayBooks(library) {
         booksDiv.appendChild(pBook);
         }
     };
-
-
-
+    
 }); // End of DOM Content Loaded Function
 
 
