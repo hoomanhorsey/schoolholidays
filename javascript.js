@@ -1,3 +1,7 @@
+// 1. Book changeStatus function. Move it to the prototype
+// 2. Then change the function that displays the book to read from the object instead of the Array.
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
 // Initialization of library
@@ -17,6 +21,9 @@ addBookToLibrary(d);
 addBookToLibrary(e);
 addBookToLibrary(f);
 
+console.log('prototype of a', Object.getPrototypeOf(a))
+console.log(Object.getPrototypeOf(a) === Book.prototype)
+console.log(Book.prototype);
 
 // Initial library display
 displayBooks(myLibrary);
@@ -42,6 +49,11 @@ newBookBtn.addEventListener('click', (e) => {
     let title = document.querySelector('.title').value;
     let pages = document.querySelector('.pages').value;
 
+    if ((author === "") || (title === "") || (pages === "")) {
+        alert("Please complete all details in the form to add a new book.")
+    }
+
+
     // Create new book object and add to library array
     let newBook = new Book(title, author, pages, statusValue);
     addBookToLibrary(newBook);
@@ -56,33 +68,21 @@ newBookBtn.addEventListener('click', (e) => {
 
 function addStatusBtnListener() {
     let statusBtns = document.querySelectorAll('.book-status-btn');
-    console.log(statusBtns);
     statusBtns.forEach((e) => {
         e.addEventListener('click', () => {
-            console.log('status');
-            console.log('status');
-            // console.log(e.currentTarget.parentNode.dataset.index)
-
+                   
             let parentNode = e.closest('.p-book');
              
             // Access the data element of the parent node
             let parentIndex = parentNode.dataset.index;
 
-            // Do something with the parent data
-            console.log('Parent Index:', parentIndex);
-            console.log('Did it get to here?')
+            // Call the changeStatus method of the relevant book in the myLibrary array
+            myLibrary[parentIndex].changeStatus();
 
-            if (myLibrary[parentIndex].status == "read") {
-                myLibrary[parentIndex].status = "unread";
-            } else {
-                myLibrary[parentIndex].status = "read";
-            };
-
-            console.log(myLibrary[parentIndex].status);
+            // redisplay myLibrary
             displayBooks(myLibrary);
             addRemoveBtnListener();
             addStatusBtnListener();
-
             })
         })
     };
@@ -92,15 +92,11 @@ let removeBtns = document.querySelectorAll('.book-remove-btn');
 
 removeBtns.forEach((e) => {
     e.addEventListener('click', ()=> {
-        console.log('index', e.dataset.index);
         index = e.dataset.index;
-        console.log('index', index);
         deleteBook(index);
-
             })
         })
     };
-
 
 
 // Functions
@@ -119,7 +115,18 @@ function Book(title, author, pages, status) {
     this.status = status;
     this.info = function () {
         return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
-    }};
+    }
+    
+    };
+
+// Adds changeStatus method to Book object prototype!!!!!
+Book.prototype.changeStatus = function () {
+    if (this.status == "read") {
+            this.status = "unread";
+        } else {
+            this.status = "read";
+        }
+    }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
