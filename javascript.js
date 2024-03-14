@@ -1,3 +1,11 @@
+// CHANGE TO CLASS - TO DO
+// - Create book class - done
+// - look at code, examine how the previous book objects were created, and how methods attached to them were used
+// - think about how you need to replication that functionality in the new class iterations
+// - go through and implement these methods and calls
+// - keep the existing book object intact, potentially. If it gets confusing  you can delete it as you've branched the git.
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
 // Initialization of library
@@ -96,6 +104,20 @@ function deleteBook(index) {
     addRemoveBtnListener();
     addStatusBtnListener();
 }
+
+
+class NewBook {
+    constructor (title, width, author, pages, status) {       
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+            }
+    get info() {
+        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
+        }
+    };
+
 
 function Book(title, author, pages, status) {
     this.title = title;
