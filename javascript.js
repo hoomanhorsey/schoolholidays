@@ -1,29 +1,52 @@
 // CHANGE TO CLASS - TO DO
 // - Create book class - done
-// - look at code, examine how the previous book objects were created, and how methods attached to them were used
-// - think about how you need to replication that functionality in the new class iterations
-// - go through and implement these methods and calls
+// - look at code, examine how the previous book objects were created, and how methods attached to them were used // done
+// - think about how you need to replication that functionality in the new class iterations // done
+// - go through and implement these methods and calls // done
 // - keep the existing book object intact, potentially. If it gets confusing  you can delete it as you've branched the git.
 
 
 document.addEventListener("DOMContentLoaded", function() {
 
+class newBook {
+    constructor (title, author, pages, status) {       
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+            }
+
+    addBookToLibrary(book) {
+        myLibrary.push(book);
+        }
+
+    changeStatus() {
+        console.log('called inside class')
+        this.status == "read" ? this.status = "unread": this.status = "read";
+        }
+    
+    get info() {
+        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
+        }
+    };
+
 // Initialization of library
 const myLibrary = [];
 
-const a = new Book("Getting to Floof", "Whiskey Dama", 534, "unread");
-const b = new Book("Where's my chickky chick", "Whiskey Dama", 23, "unread");
-const c = new Book("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
-const d = new Book("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
-const e = new Book("Meooowl and other Poems", "Whiskey Dama", 67, "read");
-const f = new Book("Did you ever figure out how to fix the height % of this page?", "Andrew Ma", 2, "unread")
+const a = new newBook("Getting to Floof", "Whiskey Dama", 534, "unread");
+const b = new newBook("Where's my chickky chick", "Whiskey Dama", 23, "unread");
+const c = new newBook("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
+const d = new newBook("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
+const e = new newBook("Meooowl and other Poems", "Whiskey Dama", 67, "read");
+const f = new newBook("Did you ever figure out how to fix the height % of this page?", "Andrew Ma", 2, "unread")
 
-addBookToLibrary(a);
-addBookToLibrary(b);
-addBookToLibrary(c);
-addBookToLibrary(d);
-addBookToLibrary(e);
-addBookToLibrary(f);
+a.addBookToLibrary(a);
+a.addBookToLibrary(b);
+a.addBookToLibrary(c);
+a.addBookToLibrary(d);
+a.addBookToLibrary(e);
+a.addBookToLibrary(f);
+
 
 
 // Initial library display
@@ -40,7 +63,7 @@ let newBookBtn = document.querySelector('.newBookBtn') // New Book form submissi
 
 // add new book via form
 newBookBtn.addEventListener('click', (e) => {
-
+  
     e.preventDefault(); // Prevent default action on submission
 
     // Gather details from form
@@ -54,8 +77,8 @@ newBookBtn.addEventListener('click', (e) => {
     }
 
     // Create new book object and add to library array
-    let newBook = new Book(title, author, pages, statusValue);
-    addBookToLibrary(newBook);
+    let addedBook = new newBook(title, author, pages, statusValue);
+    addedBook.addBookToLibrary(addedBook);
 
     // Update book display
     displayBooks(myLibrary);
@@ -77,6 +100,7 @@ function addStatusBtnListener() {
 
             // Call the changeStatus method of the relevant book in the myLibrary array
             myLibrary[parentIndex].changeStatus();
+            console.log('status listener called' + parentIndex)
 
             // redisplay myLibrary
             displayBooks(myLibrary);
@@ -104,43 +128,6 @@ function deleteBook(index) {
     addRemoveBtnListener();
     addStatusBtnListener();
 }
-
-
-class NewBook {
-    constructor (title, width, author, pages, status) {       
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.status = status;
-            }
-    get info() {
-        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
-        }
-    };
-
-
-function Book(title, author, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    this.info = function () {
-        return this.title + "by " + this.author + ", " + this.pages + " pages, " + this.status;
-        }
-    };
-
-// Adds changeStatus method to Book object prototype!!!!!
-Book.prototype.changeStatus = function () {
-    if (this.status == "read") {
-            this.status = "unread";
-        } else {
-            this.status = "read";
-        }
-    };
-
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-    };
 
 function displayBooks(library) {
 
