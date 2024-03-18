@@ -21,7 +21,6 @@ class newBook {
         }
 
     changeStatus() {
-        console.log('called inside class')
         this.status == "read" ? this.status = "unread": this.status = "read";
         }
     
@@ -100,7 +99,6 @@ function addStatusBtnListener() {
 
             // Call the changeStatus method of the relevant book in the myLibrary array
             myLibrary[parentIndex].changeStatus();
-            console.log('status listener called' + parentIndex)
 
             // redisplay myLibrary
             displayBooks(myLibrary);
@@ -121,7 +119,6 @@ function addRemoveBtnListener() {
         };
 
 // Functions
-
 function deleteBook(index) {
     myLibrary.splice(index, 1);
     displayBooks(myLibrary);
@@ -130,7 +127,6 @@ function deleteBook(index) {
 }
 
 function displayBooks(library) {
-
     let booksDiv = document.querySelector('.books-div');
     booksDiv.textContent = ""; // Clear out Div
 
