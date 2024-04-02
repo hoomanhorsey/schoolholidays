@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
 // Initialization of library
 const myLibrary = [];
 
-const a = new Book("Coding with Scratch", "Andrew", 3, "unread");
-const b = new Book("Perspective city drawings", "Andrew", 22, "unread");
-const c = new Book("Go for a walk around Viewbank", "Andrew", 3, "read");
+const a = new Book("Coding with Scratch", "Andrew", 3, "incomplete");
+const b = new Book("Perspective city drawings", "Andrew", 22, "incomplete");
+const c = new Book("Go for a walk around Viewbank", "Andrew", 3, "completed");
 
 
 addBookToLibrary(a);
@@ -105,10 +105,10 @@ function Book(title, author, pages, status) {
 
 // Adds changeStatus method to Book object prototype!!!!!
 Book.prototype.changeStatus = function () {
-    if (this.status == "read") {
-            this.status = "unread";
+    if (this.status == "completed") {
+            this.status = "incomplete";
         } else {
-            this.status = "read";
+            this.status = "completed";
         }
     };
 
@@ -129,7 +129,7 @@ function displayBooks(library) {
         pBook.setAttribute('data-index', index);     
                 
         pBook.innerHTML= `<div> <span class="title" >${book.title} </span> - activity proposed by ${book.author}, ${book.pages} hour(s).  <br><br> Status "${book.status}".</div> 
-            <div> <button class="book-status-btn"> Change completed/uncompleted status</button> </div>
+            <div> <button class="book-status-btn"> Change status</button> </div>
             <div> <button data-index="${index}" class="book-remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);
