@@ -52,6 +52,44 @@ newBookBtn.addEventListener('click', (e) => {
     addStatusBtnListener();
     });
 
+let loadButton = document.querySelector('.loadButton')  
+
+loadButton.addEventListener('click', (e) => {
+    console.log(myLibrary);
+});
+
+
+var textFileUrl = null; // Global variable to store the URL for the file to be downloaded
+
+
+
+let saveButton = document.querySelector('.saveButton')  
+saveButton.addEventListener('click', (e) => {
+    const savedLibrary = JSON.stringify(myLibrary);
+
+    generateTextFileUrl(savedLibrary);
+    // Generate a text file URL 
+           
+
+});
+
+function generateTextFileUrl(JSONfile) {
+
+    console.log('generate text file called')
+
+    let fileData = new Blob([JSONfile], {type: 'text/plain'});
+    // If a file has been previously generated, revoke the existing URL
+    if (textFileUrl !== null) {
+        window.URL.revokeObjectURL(textFileUrl);
+    }
+    textFileUrl = window.URL.createObjectURL(fileData);
+
+    console.log(textFileUrl)
+    // Returns a reference to the global variable holding the URL
+    document.getElementById('downloadLink').href = textFileUrl; 
+     };
+
+
 // change read status
 function addStatusBtnListener() {
     let statusBtns = document.querySelectorAll('.book-status-btn');
