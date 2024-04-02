@@ -3,16 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
 // Initialization of library
 const myLibrary = [];
 
-const a = new Book("Coding with Scratch", "Andrew", 3, "incomplete");
-const b = new Book("Perspective city drawings", "Andrew", 22, "incomplete");
-const c = new Book("Go for a walk around Viewbank", "Andrew", 3, "completed");
+const a = new Book("Watch the Simpsons", "Ned Flanders", 3, "incomplete");
+// const b = new Book("Perspective city drawings", "Andrew", 22, "incomplete");
+// const c = new Book("Go for a walk around Viewbank", "Andrew", 3, "completed");
 
 
 addBookToLibrary(a);
-addBookToLibrary(b);
-addBookToLibrary(c);
-
-
 
 // Initial library display
 displayBooks(myLibrary);
@@ -52,32 +48,23 @@ newBookBtn.addEventListener('click', (e) => {
     addStatusBtnListener();
     });
 
-let loadButton = document.querySelector('.loadButton')  
 
-loadButton.addEventListener('click', (e) => {
-    console.log(myLibrary);
-});
 
 
 var textFileUrl = null; // Global variable to store the URL for the file to be downloaded
 
-
-
+// Save file
 let saveButton = document.querySelector('.saveButton')  
 saveButton.addEventListener('click', (e) => {
     const savedLibrary = JSON.stringify(myLibrary);
-
     generateTextFileUrl(savedLibrary);
-    // Generate a text file URL 
-           
-
+    // Generate a text file URL          
 });
 
 function generateTextFileUrl(JSONfile) {
-
-    console.log('generate text file called')
-
     let fileData = new Blob([JSONfile], {type: 'text/plain'});
+    console.log(fileData)
+
     // If a file has been previously generated, revoke the existing URL
     if (textFileUrl !== null) {
         window.URL.revokeObjectURL(textFileUrl);
@@ -89,11 +76,37 @@ function generateTextFileUrl(JSONfile) {
     document.getElementById('downloadLink').href = textFileUrl; 
      };
 
+// Load file
+
+const fileInput = document.getElementById('fileInput'); // Get input element 
+
+    // Add an event listener to the file input element.
+    fileInput.addEventListener('change', function() {
+
+        console.log('load called')
+        const selectedFile = fileInput.files[0];
+
+        if (selectedFile) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const contents = event.target.result;
+                const objectAgain = JSON.parse(contents);
+                console.log(objectAgain)
+                displayBooks(objectAgain);
+            };
+            reader.readAsText(selectedFile);
+        } else {
+            fileContents.textContent = 'No file selected.';
+        }})
+
 
 // change read status
 function addStatusBtnListener() {
     let statusBtns = document.querySelectorAll('.book-status-btn');
     statusBtns.forEach((e) => {
+
+        console.log('function called')
         e.addEventListener('click', () => {
                    
             let parentNode = e.closest('.p-book');
