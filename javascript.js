@@ -35,7 +35,7 @@ newBookBtn.addEventListener('click', (e) => {
 
     if ((author === "") || (title === "") || (pages === "")) {
         alert("Please complete all details in the form to add a new book.")
-    }
+    } else {
 
     // Create new book object and add to library array
     let newBook = new Book(title, author, pages, statusValue);
@@ -46,6 +46,7 @@ newBookBtn.addEventListener('click', (e) => {
     document.querySelector('form').reset();
     addRemoveBtnListener();
     addStatusBtnListener();
+}
     });
 
 
@@ -57,13 +58,15 @@ var textFileUrl = null; // Global variable to store the URL for the file to be d
 let saveButton = document.querySelector('.saveButton')  
 saveButton.addEventListener('click', (e) => {
     const savedLibrary = JSON.stringify(myLibrary);
+    
     generateTextFileUrl(savedLibrary);
+
+
     // Generate a text file URL          
 });
 
 function generateTextFileUrl(JSONfile) {
     let fileData = new Blob([JSONfile], {type: 'text/plain'});
-    console.log(fileData)
 
     // If a file has been previously generated, revoke the existing URL
     if (textFileUrl !== null) {
@@ -71,7 +74,6 @@ function generateTextFileUrl(JSONfile) {
     }
     textFileUrl = window.URL.createObjectURL(fileData);
 
-    console.log(textFileUrl)
     // Returns a reference to the global variable holding the URL
     document.getElementById('downloadLink').href = textFileUrl; 
      };
