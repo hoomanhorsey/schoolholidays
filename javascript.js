@@ -3,19 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
 // Initialization of library
 const myLibrary = [];
 
-const a = new Book("Getting to Floof", "Whiskey Dama", 534, "unread");
-const b = new Book("Where's my chickky chick", "Whiskey Dama", 23, "unread");
-const c = new Book("Portals. The science of ingress and egress", "Whiskey Dama", 243, "read");
-const d = new Book("Tiny Box. 50 of the tiniest but most livable boxes.", "Mick Hucknell", 343, "read");
-const e = new Book("Meooowl and other Poems", "Whiskey Dama", 67, "read");
-const f = new Book("Did you ever figure out how to fix the height % of this page?", "Andrew Ma", 2, "unread")
+const a = new Book("Coding with Scratch", "Andrew", 3, "unread");
+const b = new Book("Perspective city drawings", "Andrew", 22, "unread");
+const c = new Book("Go for a walk around Viewbank", "Andrew", 3, "read");
+
 
 addBookToLibrary(a);
 addBookToLibrary(b);
 addBookToLibrary(c);
-addBookToLibrary(d);
-addBookToLibrary(e);
-addBookToLibrary(f);
+
 
 
 // Initial library display
@@ -132,8 +128,8 @@ function displayBooks(library) {
         index = library.indexOf(book);
         pBook.setAttribute('data-index', index);     
                 
-        pBook.innerHTML= `<div> <span class="title" >${book.title} </span> by ${book.author}, ${book.pages} pages.  <br><br> Status "${book.status}".</div> 
-            <div> <button class="book-status-btn"> Change read status</button> </div>
+        pBook.innerHTML= `<div> <span class="title" >${book.title} </span> - activity proposed by ${book.author}, ${book.pages} hour(s).  <br><br> Status "${book.status}".</div> 
+            <div> <button class="book-status-btn"> Change completed/uncompleted status</button> </div>
             <div> <button data-index="${index}" class="book-remove-btn">Remove</button> </div> `;
         pBook.setAttribute('class', 'p-book');
         booksDiv.appendChild(pBook);

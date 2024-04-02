@@ -12,38 +12,39 @@
 
     <div class="container">
     <div class="header">
-        <div class="header-text">Library</div>
+        <div class="header-text">School Holidays Activity Log!</div>
 
     </div>
 
     <div class="sidebar">
         <div class="sidebar-container" >
         <div>
-            <div class="addBook">Add New Book</div>
+            <div class="addBook">Add New Activity</div>
         </div>
         <div class="new-book-form">
 
             <form action="https://httpbin.org/post" method="post" class="newbook" autocomplete="off">
     
                 <div>
-                    <label for="author" class="label-author">Author</label>
-                    <input type="text" id="author" name="author" class="author">
-                </div>
-                <div>
-                    <label for="title" class="label-title">Title</label>
+                    <label for="title" class="label-title">Activity Name</label>
                     <input type="text" id="title" name="title" class="title">
                 </div>
     
                 <div>
-                    <label for="pages" class="label-pages">Number of pages</label>
+                    <label for="author" class="label-author">Whose idea?</label>
+                    <input type="text" id="author" name="author" class="author">
+                </div>
+             
+                <div>
+                    <label for="pages" class="label-pages">Duration (hours)</label>
                     <input type="number" id="pages" name="pages" class="pages">
                 </div>
                 
                 <div>
-                    <label for="read" class="label-read">Read status</label>
+                    <label for="read" class="label-read">Activity status</label>
                     <select id=read class="read">
-                        <option value="read">read</option>   
-                        <option value="unread">unread</option> 
+                        <option value="read">Done</option>   
+                        <option value="unread">Not Done</option> 
                     </select>
                 </div>
     

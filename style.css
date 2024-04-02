@@ -31,12 +31,12 @@ html, body {
     place-items: center;
     padding: 30px;
 
-    background-image: url("bookshelfsmall.jpg");
+    background-image: url("hols.jpeg");
     
 }
 
 .header-text {
-    font-size: 10rem;
+    font-size: 3rem;
     font-weight: 700;
     text-align: center;
     background-color: white;
